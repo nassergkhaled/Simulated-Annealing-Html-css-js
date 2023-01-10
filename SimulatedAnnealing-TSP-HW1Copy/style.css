@@ -1,0 +1,110 @@
+canvas
+{
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: 400px;
+	display: block;
+	width: 1360px;
+	height:  700px;
+	border: 2px solid #ea1313;
+	border-radius: 3px;
+	position: center;
+	top: 15px;
+	right: 15px;
+}
+
+#set
+{
+	font-family: 'Lato', sans-serif;
+	border: 1px solid #d71111;
+	float: contour;
+	padding: 10px;
+	top: 15px;
+	left: 15px;
+	position: absolute;
+	border-radius: 5px;
+}
+
+#solve
+{
+	background-color: #f30000;
+	border: none;
+	padding: 5px 7px 5px 7px;
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	color: #ffffff;
+	border-radius: 1px;
+	width: 100px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+#a,#reset
+{
+	background-color: #f30000;
+	border: none;
+	padding: 5px 7px 5px 7px;
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	color: #ffffff;
+	border-radius: 1px;
+	width: 100px;
+	cursor: pointer;
+	margin-top: 10px;
+	
+}
+#a{
+	margin-left: 75px;
+	width: 180px;
+}
+#a:hover{
+	background: #000000;
+}
+#reset:hover{
+	background: #000000;
+}
+#solve:hover{
+	background: #000000;
+}
+#ac:hover{
+	background: #000000;
+}
+
+#ac
+{
+	background-color: #f30000;
+	border: none;
+	padding: 5px 7px 5px 7px;
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	color: #ffffff;
+	border-radius: 1px;
+	width: 100px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+table
+{
+	margin-left: 15px;
+	margin-top: 15px;
+	padding-top: 10px;
+}
+
+td
+{
+	padding: 5px;
+	color: aliceblue;
+}
+h1,h2{
+
+	color: #ffffff;
+	position: sticky;
+}
+html.add
+{
+	cursor: crosshair;
+}

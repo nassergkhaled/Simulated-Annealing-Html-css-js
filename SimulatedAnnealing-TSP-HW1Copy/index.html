@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<style>
+		body {
+		background-color: #070606;
+		}
+		</style>
+		<title>TSP </title>
+		<link rel="stylesheet"  href="style.css" />
+		<style>
+			canvas{
+            background-image:    url(map.jpg);
+            background-size:     cover;                      
+            background-repeat:   no-repeat;
+          background-position:center;
+        }
+		</style>
+	</head>
+	<body>
+	<div>
+		<canvas
+			id="canvas" width="1500" height="1400">
+	</canvas>
+	</div>
+			<div>
+				<div id="set">
+					<h2>Settings</h2>
+					<table>
+							<tr>
+								<td>Cities</td>
+								<td>
+								<input type="text" id="cities" value="10"></input>
+								</td>
+							</tr>
+							<tr>
+								<td>Initial Temperature</td>
+								<td>
+								<input type="text" id="temperature" value="0.1"></input>
+								</td>
+							</tr>
+						<tr>
+							<td>Cooling Rate</td>
+							<td>
+								<input type="text" id="coolrate" value="0.99999"></input>
+							</td>
+						</tr>
+							<tr>
+								<td>Final temperature</td>
+								<td>
+								<input type="text" id="final temperature" value=".0001"></input>
+								</td>
+							</tr>
+
+					</table>
+					<h2>-----------------------------------------</h2>
+					<h2>Cost Report</h2>
+					<table>
+
+						<tr>
+							<td>
+								<h4>
+									The Initial Cost is:
+									<p id="1" style="display: inline;"></p>
+								</h4>
+							</td>
+						</tr>
+						<tr>
+
+							<td>
+								<h4>
+									The Final Cost is:
+									<p id="2" style="display: inline;"></p>
+									
+								</h4>
+							</td>
+						</tr>
+						<tr>
+
+							<td>
+								<h4>
+									The Amount Of Saving is:
+									<p id="3" style="display: inline;"></p>
+								</h4>
+							</td>
+						</tr>
+					</table>
+					<button  onclick="init()" id="solve">Solve</button>
+					<button  onclick="AA()" id="ac">Add City</button>
+					<button  onclick="RandomConnect()" id="reset">Random</button>
+					<button style="display: block;"  onclick=location.reload(); id="a">Clear</button>
+					<script>
+						function getWindowToCanvas(canvas, e) {
+							e = e || window.event;
+							var target = e.target || e.srcElement,
+									style = target.currentStyle || window.getComputedStyle(target, null),
+									borderLeftWidth = parseInt(style["borderLeftWidth"], 10),
+									borderTopWidth = parseInt(style["borderTopWidth"], 10),
+									rect = target.getBoundingClientRect(),
+									offsetX = e.clientX - borderLeftWidth - rect.left,
+									offsetY = e.clientY - borderTopWidth - rect.top;
+							let x = (offsetX * target.width) / target.clientWidth;
+							let y = (offsetY * target.height) / target.clientHeight;
+							const ctx = canvas.getContext("2d");
+							var transform = ctx.getTransform();
+							const invMat = transform.invertSelf();
+							return {
+								x: x * invMat.a + y * invMat.c + invMat.e,
+								y: x * invMat.b + y * invMat.d + invMat.f
+							};
+						}
+						function AA() {
+							x=0;
+							var i=-1;
+                              $("html").toggleClass("add")
+								window.onclick = function B(e) {
+									var evt = window.event || e;
+									var X = evt.clientX;
+									var Y = evt.clientY;
+									if (detector) {
+										//alert(X);
+										//alert(Y);
+										if (((X > 400) && (X < 1850)) && ((Y > 10) && (Y < 800))) {
+											cX = getWindowToCanvas(tsp_canvas, e).x;
+											cY = getWindowToCanvas(tsp_canvas, e).y;
+											tsp_ctx.beginPath();
+											tsp_ctx.arc(cX, cY, 12, 0, 2 * Math.PI);
+											tsp_ctx.fillStyle = "#ffffff";
+											tsp_ctx.strokeStyle = "#000000";
+											tsp_ctx.closePath();
+											tsp_ctx.fill();
+											tsp_ctx.lineWidth = 1;
+											tsp_ctx.stroke();
+											setTimeout(function () {
+												current[CITIES] = [cX, cY];
+												CITIES++;
+												deep_copy(current, best);
+												best_cost = getCost(best);
+												document.getElementById('1').innerHTML=""+parseInt(best_cost);
+												setInterval(solve, 10);
+											}, 1000);
+										}
+									} else {
+										i++;
+										cX = getWindowToCanvas(tsp_canvas, e).x;
+										cY = getWindowToCanvas(tsp_canvas, e).y;
+										tsp_ctx.beginPath();
+										tsp_ctx.arc(cX, cY, 12, 0, 2 * Math.PI);
+										tsp_ctx.fillStyle = "#ffffff";
+										tsp_ctx.strokeStyle = "#000000";
+										tsp_ctx.closePath();
+										tsp_ctx.fill();
+										tsp_ctx.lineWidth = 1;
+										tsp_ctx.stroke();
+												current[i] = [cX, cY];
+												CITIES++;
+												deep_copy(current, best);
+												best_cost = getCost(best);
+								}
+						}
+						};
+					</script>
+					</div>
+				</div>
+			</div>
+		<script  src="script.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	</body>
+</html>
